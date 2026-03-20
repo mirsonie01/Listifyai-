@@ -436,7 +436,7 @@ canvas#mce{display:none}
 <div class="toast" id="tst"></div>
 
 <script>
-const KEY='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';
+const KEY='AIzaSyCu3V6ABN5-QDANM_wIrERHs8za1STa6sc';
 let cr=10,dtone='warm',sprodV='tshirt',scolV='#ffffff',sbgV='#f5f0eb',uImg=null,mdone=false;
 let saved=JSON.parse(localStorage.getItem('lfy')||'[]'),gtags=[],gdesc='',skws=new Set();
 
@@ -447,7 +447,7 @@ function toast(m,c=''){const t=document.getElementById('tst');t.textContent=m;t.
 function sw(id,btn){document.querySelectorAll('.ni').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.ap').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('ap-'+id).classList.add('active');if(id==='hist')rHist()}
 function eH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function eA(s){return String(s).replace(/'/g,'&#39;').replace(/"/g,'&quot;')}
-async function ai(p,max=1200){const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:max,messages:[{role:'user',content:p}]})});const d=await r.json();return d.content.map(i=>i.text||'').join('')}
+async function ai(p,max=1200){const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+KEY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:p}]}],generationConfig:{maxOutputTokens:max}})});const d=await r.json();return d.candidates[0].content.parts[0].text||''}
 function pJ(r){return JSON.parse(r.replace(/```json|```/g,'').trim())}
 function sLoad(rid,bid,t){document.getElementById(rid).innerHTML='<div class="ld2"><span></span><span></span><span></span></div>';const b=document.getElementById(bid);b.disabled=true;b.textContent=t}
 function rBtn(bid,t){const b=document.getElementById(bid);b.disabled=false;b.innerHTML=t}
